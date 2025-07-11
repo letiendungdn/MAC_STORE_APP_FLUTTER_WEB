@@ -1,9 +1,10 @@
 import 'package:app_web/controllers/banner_controller.dart';
+import 'package:app_web/views/side_bar_screens/widget/banner_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
 class UploadBannerScreen extends StatefulWidget {
-   static const String id = 'UploadBannerScreen';
+  static const String id = 'UploadBannerScreen';
   const UploadBannerScreen({super.key});
 
   @override
@@ -12,7 +13,7 @@ class UploadBannerScreen extends StatefulWidget {
 
 class _UploadBannerScreenState extends State<UploadBannerScreen> {
   final BannerController _bannerController = BannerController();
- dynamic _image;
+  dynamic _image;
   pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image,
@@ -25,7 +26,6 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,46 +35,55 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             alignment: Alignment.topLeft,
-            child: Text("Banners", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),),
-          
+            child: Text(
+              "Banners",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
+            ),
           ),
         ),
-        Divider(
-          color: Colors.grey,
-          thickness: 2,
-        ),
+        Divider(color: Colors.grey, thickness: 2),
         Row(
           children: [
-             Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Center(
-                  child: _image != null
-                      ? Image.memory(_image)
-                      : Text('Category image'),
-                ),
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(5),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(onPressed: () async {
+              child: Center(
+                child: _image != null
+                    ? Image.memory(_image)
+                    : Text('Category image'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () async {
                   await _bannerController.uploadBanner(
                     pickedImage: _image,
                     context: context,
                   );
-                }, child: Text('Save')),
+                },
+                child: Text('Save'),
               ),
-               Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: ElevatedButton(onPressed: () {
+            ),
+          
+          
+          ],
+        ),
+          Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
                   pickImage();
-                 }, child: Text('Pick Image')),
-               ),
-          ]
-        )
+                },
+                child: Text('Pick Image'),
+              ),
+            ),
+          Divider(color: Colors.grey),
+            BannerWidget(),
       ],
     );
   }
