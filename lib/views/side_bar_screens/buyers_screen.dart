@@ -6,6 +6,6 @@ class BuyersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('Buyers Screen'));
+    return const Center(child: Text('Buyers Screen'));
   }
 }

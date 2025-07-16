@@ -2,6 +2,7 @@ import 'package:app_web/views/side_bar_screens/buyers_screen.dart';
 import 'package:app_web/views/side_bar_screens/category_screen.dart';
 import 'package:app_web/views/side_bar_screens/orders_screen.dart';
 import 'package:app_web/views/side_bar_screens/products_screen.dart';
+import 'package:app_web/views/side_bar_screens/subcategory_screen.dart';
 import 'package:app_web/views/side_bar_screens/upload_banner_screen.dart';
 import 'package:app_web/views/side_bar_screens/vendors_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +17,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  Widget _selectedScreen = VendorsScreen();
+  Widget _selectedScreen = const VendorsScreen();
   screenSelector(item) {
     switch (item.route) {
       case BuyersScreen.id:
@@ -39,6 +40,11 @@ class _MainScreenState extends State<MainScreen> {
           _selectedScreen = const CategoryScreen();
         });
         break;
+      case SubcategoryScreen.id:
+        setState(() {
+          _selectedScreen = const SubcategoryScreen();
+        });
+        break;
       case UploadBannerScreen.id:
         setState(() {
           _selectedScreen = const UploadBannerScreen();
@@ -55,14 +61,14 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return AdminScaffold(
-      appBar: AppBar(backgroundColor: Colors.blue, title: Text("Management")),
+      appBar: AppBar(backgroundColor: Colors.blue, title: const Text("Management")),
       body: _selectedScreen,
       sideBar: SideBar(
         header: Container(
           height: 50,
           width: double.infinity,
-          decoration: BoxDecoration(color: Colors.black),
-          child: Center(
+          decoration: const BoxDecoration(color: Colors.black),
+          child: const Center(
             child: Text(
               'Multi Vendor Admin',
               style: TextStyle(
@@ -75,32 +81,37 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         items: [
-          AdminMenuItem(
+          const AdminMenuItem(
             title: 'Vendors',
             route: VendorsScreen.id,
             icon: CupertinoIcons.person_3,
           ),
-          AdminMenuItem(
+          const AdminMenuItem(
             title: 'Buyers',
             route: BuyersScreen.id,
             icon: CupertinoIcons.person,
           ),
-          AdminMenuItem(
+          const AdminMenuItem(
             title: 'Orders',
             route: OrdersScreen.id,
             icon: CupertinoIcons.shopping_cart,
           ),
-          AdminMenuItem(
+          const AdminMenuItem(
             title: 'Categories',
             route: CategoryScreen.id,
             icon: Icons.category,
           ),
-          AdminMenuItem(
+           const AdminMenuItem(
+            title: 'Subcategories',
+            route: SubcategoryScreen.id,
+            icon: Icons.category,
+          ),
+          const AdminMenuItem(
             title: 'Upload Banner',
             route: UploadBannerScreen.id,
             icon: Icons.upload,
           ),
-          AdminMenuItem(
+          const AdminMenuItem(
             title: 'Products',
             route: ProductsScreen.id,
             icon: Icons.store,
