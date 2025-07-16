@@ -25,17 +25,17 @@ class _BannerWidgetState extends State<BannerWidget> {
       future: futureBanners,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Center(child: Text("Error: ${snapshot.error}"));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text('No Banners'));
+          return const Center(child: Text('No Banners'));
         } else {
           final banners = snapshot.data!;
           return GridView.builder(
             shrinkWrap: true,
             itemCount: banners.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 6,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,

@@ -35,13 +35,13 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             alignment: Alignment.topLeft,
-            child: Text(
+            child: const Text(
               "Banners",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
             ),
           ),
         ),
-        Divider(color: Colors.grey, thickness: 2),
+        const Divider(color: Colors.grey, thickness: 2),
         Row(
           children: [
             Container(
@@ -54,7 +54,7 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
               child: Center(
                 child: _image != null
                     ? Image.memory(_image)
-                    : Text('Category image'),
+                    : const Text('Category image'),
               ),
             ),
             Padding(
@@ -66,7 +66,7 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
                     context: context,
                   );
                 },
-                child: Text('Save'),
+                child: const Text('Save'),
               ),
             ),
           
@@ -79,11 +79,11 @@ class _UploadBannerScreenState extends State<UploadBannerScreen> {
                 onPressed: () {
                   pickImage();
                 },
-                child: Text('Pick Image'),
+                child: const Text('Pick Image'),
               ),
             ),
-          Divider(color: Colors.grey),
-            BannerWidget(),
+          const Divider(color: Colors.grey),
+            const BannerWidget(),
       ],
     );
   }

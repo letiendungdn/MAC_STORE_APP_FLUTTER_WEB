@@ -1,22 +1,23 @@
-import 'package:app_web/controllers/category_controller.dart';
-import 'package:app_web/models/category.dart';
+
+import 'package:app_web/controllers/subcategory_controller.dart';
+import 'package:app_web/models/subcategory.dart';
 import 'package:flutter/material.dart';
 
-class CategoryWidget extends StatefulWidget {
-  const CategoryWidget({super.key});
+class SubcategoryWidget extends StatefulWidget {
+  const SubcategoryWidget({super.key});
 
   @override
-  State<CategoryWidget> createState() => _CategoryWidgetState();
+  State<SubcategoryWidget> createState() => _SubcategoryWidgetState();
 }
 
-class _CategoryWidgetState extends State<CategoryWidget> {
+class _SubcategoryWidgetState extends State<SubcategoryWidget> {
   // A future that will hold the list  of categories once loaded from the Api
-  late Future<List<Category>> futureCategory;
+  late Future<List<Subcategory>> futureCategory;
 
   @override
   void initState() {
     super.initState();
-    futureCategory = CategoryController().loadCategories();
+    futureCategory = SubcategoryController().loadSubcategories();
   }
 
   @override
@@ -29,23 +30,23 @@ class _CategoryWidgetState extends State<CategoryWidget> {
         } else if (snapshot.hasError) {
           return Center(child: Text('Error ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No Categories'));
+          return const Center(child: Text('No Subcategories'));
         } else {
-          final categories = snapshot.data!;
+          final subcategories = snapshot.data!;
           return GridView.builder(
             shrinkWrap: true,
-            itemCount: categories.length,
+            itemCount: subcategories.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 6,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
             ),
             itemBuilder: (context, index) {
-              final category = categories[index];
+              final subcategory = subcategories[index];
               return Column(
                 children: [
-                  Image.network(category.image, height: 100, width: 100),
-                  Text(category.name),
+                  Image.network(subcategory.image, height: 100, width: 100),
+                  Text(subcategory.subCategoryName),
                 ],
               );
             },
